@@ -9,7 +9,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd app
-                pip3 install -r requirements.txt
+                /usr/bin/pip3 install -r requirements.txt
                 '''
             }
         }
