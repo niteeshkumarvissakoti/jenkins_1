@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd myapp
+                cd app
                 pip install -r requirements.txt
                 '''
             }
