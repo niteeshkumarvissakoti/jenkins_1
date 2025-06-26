@@ -17,9 +17,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd myapp
+                cd app
                 python3 hello.py
-                python3 hello.py --name=Brad
+                python3 hello.py --name=Niteesh
                 '''
             }
         }
