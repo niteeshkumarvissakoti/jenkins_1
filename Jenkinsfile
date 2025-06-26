@@ -27,8 +27,16 @@ pipeline {
             steps {
                 echo 'Deliver....'
                 sh '''
-                echo "doing delivery stuff.."
+                mkdir -p app/output
+                echo "Delivery successful for Niteesh!" > app/output/deliver.txt
                 '''
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                echo 'Archiving delivery file...'
+                archiveArtifacts artifacts: 'app/output/deliver.txt', allowEmptyArchive: false
             }
         }
     }
