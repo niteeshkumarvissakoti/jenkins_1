@@ -1,0 +1,126 @@
+name: my_first_job
+on:
+  
+  # The following PollSCM schedule was transformed and may behave differently than in Jenkins.
+  # In Actions, this workflow will run on this schedule regardless of any changes whereas in Jenkins a job will only run if there are changes.
+  schedule:
+  - cron: "* * * * *"
+  push:
+    branches:
+    - main
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Building..
+    - name: sh
+      shell: bash
+      run: |-
+        cd app
+        pip3 install --user -r requirements.txt
+  Test:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Testing..
+    - name: sh
+      shell: bash
+      run: |-
+        cd app
+        python3 hello.py
+        python3 hello.py --name=Niteesh
+  Deliver:
+    runs-on: ubuntu-latest
+    needs: Test
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Deliver....
+    - name: sh
+      shell: bash
+      run: |-
+        mkdir -p app/output
+        echo "Delivery successful for Niteesh!" > app/output/deliver.txt
+  Archive:
+    runs-on: ubuntu-latest
+    needs: Deliver
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Archiving delivery file...
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.1.0
+      if: always()
+      with:
+        path: app/output/deliver.txt
+name: my_first_job
+on:
+  
+  # The following PollSCM schedule was transformed and may behave differently than in Jenkins.
+  # In Actions, this workflow will run on this schedule regardless of any changes whereas in Jenkins a job will only run if there are changes.
+  schedule:
+  - cron: "* * * * *"
+  push:
+    branches:
+    - main
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Building..
+    - name: sh
+      shell: bash
+      run: |-
+        cd app
+        pip3 install --user -r requirements.txt
+  Test:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Testing..
+    - name: sh
+      shell: bash
+      run: |-
+        cd app
+        python3 hello.py
+        python3 hello.py --name=Niteesh
+  Deliver:
+    runs-on: ubuntu-latest
+    needs: Test
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Deliver....
+    - name: sh
+      shell: bash
+      run: |-
+        mkdir -p app/output
+        echo "Delivery successful for Niteesh!" > app/output/deliver.txt
+  Archive:
+    runs-on: ubuntu-latest
+    needs: Deliver
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Archiving delivery file...
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.1.0
+      if: always()
+      with:
+        path: app/output/deliver.txt
