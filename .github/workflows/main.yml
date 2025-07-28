@@ -3,11 +3,10 @@ on:
   
   # The following PollSCM schedule was transformed and may behave differently than in Jenkins.
   # In Actions, this workflow will run on this schedule regardless of any changes whereas in Jenkins a job will only run if there are changes.
-  schedule:
-  - cron: "* * * * *"
+  # schedule:
+  # - cron: "* * * * *"
   push:
-    branches:
-    - main
+    branches: [ "main" ]
 jobs:
   Build:
     runs-on: ubuntu-latest
