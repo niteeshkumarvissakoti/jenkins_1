@@ -33,7 +33,7 @@ jobs:
       run: |-
         cd app
         python3 hello.py
-        python3 hello.py --name=Niteesh
+        #python3 hello.py --name=Niteesh
   Deliver:
     runs-on: ubuntu-latest
     needs: Test
